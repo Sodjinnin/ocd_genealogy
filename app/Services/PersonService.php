@@ -10,10 +10,6 @@ use Illuminate\Support\Facades\DB;
 class PersonService
 {
     public function getPeople(){
-        $timestart = microtime(true);
-        $person = Person::findOrFail(84);
-        $degree = $person->getDegreeWith(1265);
-        dd(["degree"=>$degree, "time"=>microtime(true)-$timestart, "nb_queries"=>count(DB::getQueryLog())]);
 
         return Person::query()->with("creator")->get();
     }
